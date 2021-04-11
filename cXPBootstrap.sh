@@ -22,18 +22,23 @@ then
     ACTUAL_LAUNCHER_HASH="$(md5sum $LAUNCHER_PATH | cut -d ' ' -f 1)"
     if [ "$LAUNCHER_HASH" != "$ACTUAL_LAUNCHER_HASH" ]
     then
-        echo ":: Newer launcher is available. Downloading"
+        echo ":: Newer launcher is available"
+        echo ":: Downloading"
         download_launcher
+        echo ":: Done"
     else
-        echo ":: Launcher is already up to date"
+        echo ":: Launcher is up to date"
     fi
 else
-    echo ":: There is no launcher. Downloading"
+    echo ":: There is no launcher installed"
+    echo ":: Downloading"
     download_launcher
+    echo ":: Done"
 fi
 
 launch() {
     java -jar $LAUNCHER_PATH
 }
 
+echo ":: Launching"
 launch
